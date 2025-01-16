@@ -22,14 +22,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+#include "global.h"  //Define global keys, variables
+
+
 #include <iostream>
-#include <ncurses.h>
+
+#include <menu.h>
+#include <panel.h>
+#include <form.h>
+
 #include <fstream>
 #include <cstdlib>
 #include <string>
 #include <sstream>
-#include <format>
+
 #include <fmt/core.h>
+
+
 
 void openssl_rand_hex16();
 void openssl_rand_hex32();
@@ -40,6 +50,10 @@ void openssl_decrypt_aes256_cbc();
 
 int main(){
 initscr();
+keypad(stdscr, true); // enable func keys as F1,F2,...F12
+
+
+
 printw("CLI for encrypt/decrypt files \n");
 
 openssl_rand_hex16();
@@ -47,7 +61,7 @@ openssl_rand_hex32();
 openssl_encrypt_aes256_cbc();
 openssl_decrypt_aes256_cbc();
 
-refresh();
+printw("Enter any key for exit");
 getch();
 endwin();
 return 0;
@@ -69,7 +83,7 @@ else	{
 	tempHEX16 = new char[17];
 	fgets(tempHEX16,17,fd);
 	printw(tempHEX16,"\n");
-	delete tempHEX16;
+	delete[] tempHEX16;
 	fclose(fd);
 	}
 }
@@ -89,7 +103,7 @@ void openssl_rand_hex32(){
 	tempHEX32 =new char[33];
 	fgets(tempHEX32,33,fd);
 	printw(tempHEX32,"\n");
-	delete tempHEX32;
+	delete[] tempHEX32;
 	fclose(fd);
 	}
 }
@@ -126,8 +140,8 @@ void openssl_encrypt_aes256_cbc(){
 	std::system(cmd.c_str());
 	printw("\nOperation successfull\n");
 
-	delete tempHEX16;
-	delete tempHEX32;
+	delete[] tempHEX16;
+	delete[] tempHEX32;
 	
 
 	}
