@@ -23,24 +23,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include <iostream>
-#include <ncurses.h>
-#include "global.h"  //Define global keys, variables
-int main(){
-	
-initNcurses();
+//Global keys, local lib
 
-printw("CommanderLineSSL \n");
-
-openssl_rand_hex16();
-openssl_rand_hex32();
-openssl_encrypt_aes256_cbc();
-openssl_decrypt_aes256_cbc();
+#ifndef _fenster_h
+#define _fenster_h
 
 
-printw("Enter any key for exit");
-getch();
-endwin();
-return 0;
-}
 
+void initNcurses(void); // initial NCURSES in main.cpp
+
+
+#endif

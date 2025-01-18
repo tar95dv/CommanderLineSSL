@@ -22,25 +22,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-
-#include <iostream>
 #include <ncurses.h>
-#include "global.h"  //Define global keys, variables
-int main(){
+
+#include <menu.h>
+#include <panel.h>
+#include <form.h>
+
+#include "global.h"
+#include "settings_theme.h"
+void initNcurses(void){ /* Initialize ncurses */
+	initscr(); /* Initialize ncurses */
+	start_color(); /* Enable text color support */
 	
-initNcurses();
-
-printw("CommanderLineSSL \n");
-
-openssl_rand_hex16();
-openssl_rand_hex32();
-openssl_encrypt_aes256_cbc();
-openssl_decrypt_aes256_cbc();
-
-
-printw("Enter any key for exit");
-getch();
-endwin();
-return 0;
-}
-
+	set_settings_theme(1); /* Func for setup theme from settings_theme.cpp and h*/
+	
+	keypad(stdscr, true); /* enable func keys as F1,F2,...F12 */
+	}

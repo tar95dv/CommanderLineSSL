@@ -23,24 +23,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include <iostream>
 #include <ncurses.h>
-#include "global.h"  //Define global keys, variables
-int main(){
-	
-initNcurses();
 
-printw("CommanderLineSSL \n");
+void set_settings_theme(int num_theme){
+	/* if(!can_change_color()){ // If the terminal does not support the theme, the default colors will be set. 
+		num_theme = 0;
+		} */
+	switch(num_theme) {
+		/* case 0:{
+				break;
+			} */
+		case 1: {
+				init_pair(1,COLOR_YELLOW,COLOR_BLACK);
+				attrset(COLOR_PAIR(1));
+				break;
+			}
+		case 2:{
+			
+				init_pair(1,COLOR_GREEN,COLOR_BLACK);
+				attrset(COLOR_PAIR(1));
+				break;
+			}
+		}
 
-openssl_rand_hex16();
-openssl_rand_hex32();
-openssl_encrypt_aes256_cbc();
-openssl_decrypt_aes256_cbc();
-
-
-printw("Enter any key for exit");
-getch();
-endwin();
-return 0;
-}
+	}
 

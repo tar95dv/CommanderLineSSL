@@ -34,9 +34,12 @@ THE SOFTWARE.
 #define ENTER 10
 #define ESCAPE 20
 
+
 //Local libs
 
-#include "hot_keys.h"
-
+#include "hot_keys.h" /* hot keys as F1,F2...F12, q- quit */
+#include "fenster.h" /* Create virtual windows */
+#include "settings_theme.h" /* Appearance virtual windows */
+#include "kryptographie.h" /* Encrypt and decrypt files */
 
 #endif
